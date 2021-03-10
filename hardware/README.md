@@ -10,3 +10,8 @@
 
 -> File <b>air_quality_monitor_original.ino</b> contains the full sketch with comments <br>
 -> File <b>air_quality_monitor_cleaned.ino</b> contains the sketch cleaned from debug instructions and comments
+
+
+## Circuit Diagram Example:
+
+![Circuit Diagram](https://github.com/salvatore-arienzo/Air-Quality-Monitor/blob/master/hardware/Circuit%20Diagram.jpg)
