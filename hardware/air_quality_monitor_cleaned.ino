@@ -5,12 +5,10 @@
 SoftwareSerial HM19(1, 0); // RX = 2, TX = 3 // Bluetooth pin definition
 String data= ""; //the string we will broadcast with Bluetooth
 
-#define DHTPINA 11
-#define DHTPINB 10
+#define DHTPIN 11
 #define DHTTYPE DHT11
 
-DHT dhtA(DHTPINA, DHTTYPE);
-DHT dhtB(DHTPINB, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE);
 
 #define USE_AVG
 const int sharpLEDPin = 7;   
@@ -40,8 +38,7 @@ void setup() {
   Serial.begin(9600);
   HM19.begin(9600);
   
-  dhtA.begin();
-  dhtB.begin();
+  dht.begin();
 
   MQ135.setRegressionMethod(1); //_PPM =  a*ratio^b
   MQ135.setA(102.2); 
@@ -132,10 +129,9 @@ void measureGasses(){//gas sensor measuerement
 
   void measureHumidity(){ 
     delay(2000);
-    float h = dhtA.readHumidity();
-    float g = dhtB.readHumidity();
+    float h = dht.readHumidity();
     
-    data = data + ","+String(h)  + ","+String(g);
+    data = data + ","+String(h);
         
     measureTemperature();   
     }
@@ -143,10 +139,9 @@ void measureGasses(){//gas sensor measuerement
     void measureTemperature(){ //temperature sensors measurements
       delay(2000);
   
-    float t = dhtA.readTemperature();
-    float d = dhtB.readTemperature();
+    float t = dht.readTemperature();
    
-    data = data + ","+String(t)  + ","+String(d);
+    data = data + ","+String(t);
     Serial.println(data);
     HM19.println(data);
     data = ""; //empty the string

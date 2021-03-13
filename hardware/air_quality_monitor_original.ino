@@ -8,12 +8,10 @@ String data= ""; //the string we will broadcast with Bluetooth
 //Definition of pins:
 
 /* HUMIDITY SENSOR SECTION */
-#define DHTPINA 11
-#define DHTPINB 10
+#define DHTPIN 11
 #define DHTTYPE DHT11
 
-DHT dhtA(DHTPINA, DHTTYPE);
-DHT dhtB(DHTPINB, DHTTYPE);
+DHT dht(DHTPIN, DHTTYPE);
 
 /* DUST SENSOR SECTION */
 
@@ -74,8 +72,7 @@ void setup() {
   HM19.begin(9600);
  
   //setup humidity sensors
-  dhtA.begin();
-  dhtB.begin();
+  dht.begin();
 
   //setup gas sensor
   MQ135.setRegressionMethod(1); //_PPM =  a*ratio^b
@@ -199,8 +196,7 @@ void measureGasses(){//gas sensor measuerement
   void measureHumidity(){ //humidity sensors measurements
     //Serial.println("********************************* HUMIDITY SENSOR VALUES *************************");
     delay(2000);
-    float h = dhtA.readHumidity();
-    float g = dhtB.readHumidity();
+    float h = dht.readHumidity();
     /*Serial.print(F("Humidity: "));
     Serial.print(h);
     Serial.println(F("% "));
@@ -209,7 +205,7 @@ void measureGasses(){//gas sensor measuerement
     Serial.print(g);
     Serial.println(F("% "));*/
     
-    data = data + ","+String(h)  + ","+String(g);
+    data = data + ","+String(h);
         
     measureTemperature();   
     }
@@ -217,8 +213,7 @@ void measureGasses(){//gas sensor measuerement
     void measureTemperature(){ //temperature sensors measurements
       delay(2000);
    // Serial.println("********************************* TEMPERATURE SENSOR VALUES *************************");
-    float t = dhtA.readTemperature();
-    float d = dhtB.readTemperature();
+    float t = dht.readTemperature();
     // Read temperature as Celsius
    /* Serial.print("Temperature: ");
     Serial.print(t);
@@ -227,7 +222,7 @@ void measureGasses(){//gas sensor measuerement
     Serial.print(d);
     Serial.println("°C ");
     Serial.println("********************************* DUST SENSOR VALUES *************************");*/
-    data = data + ","+String(t)  + ","+String(d);
+    data = data + ","+String(t);
     Serial.println(data);
     HM19.println(data);
     data = ""; //empty the string

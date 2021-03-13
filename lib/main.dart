@@ -1,3 +1,5 @@
+import 'package:air_quality_monitor/views/ConnectionView.dart';
+import 'package:air_quality_monitor/views/LogView.dart';
 import 'package:air_quality_monitor/views/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +16,8 @@ void main() {
             home: SplashScreen(),
             routes: {
               'homepage': (BuildContext context) => Homepage(),
+              'log': (BuildContext context) => LogView(),
+              'connection': (BuildContext context) => ConnectionView(),
             },
           )));
 }
