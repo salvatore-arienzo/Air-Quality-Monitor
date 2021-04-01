@@ -33,6 +33,19 @@ class _MenuMakerState extends State<MenuMaker> {
                   ),
                   ListTile(
                     leading: Icon(
+                      Icons.house_outlined,
+                      color: Colors.blueGrey,
+                      size: 40,
+                    ),
+                    title: Text('Homepage',style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xd3717975))),
+                    onTap: () => Navigator.pushNamed(context, 'homepage'),
+                  ),
+                  SizedBox(height: 15,),
+                  ListTile(
+                    leading: Icon(
                       Icons.touch_app_outlined,
                       color: Colors.blueGrey,
                       size: 40,

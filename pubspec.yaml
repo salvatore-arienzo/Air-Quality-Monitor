@@ -30,7 +30,11 @@ dependencies:
   cupertino_icons: ^1.0.0
 
 dev_dependencies:
+  http: any
   flutter_blue: any
+  geolocator: any
+  geocoder: any
+  toast: any
   flutter_test:
     sdk: flutter
 

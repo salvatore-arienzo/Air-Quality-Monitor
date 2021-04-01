@@ -18,6 +18,7 @@ void main() {
               'homepage': (BuildContext context) => Homepage(),
               'log': (BuildContext context) => LogView(),
               'connection': (BuildContext context) => ConnectionView(),
+              'connectionlist': (BuildContext context) => ConnectionListView(),
             },
           )));
 }
