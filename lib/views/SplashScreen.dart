@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:air_quality_monitor/DataHandler.dart';
 
 class SplashScreen extends StatefulWidget {
-  SplashScreen();
+ DataHandler dataHandler;
+  SplashScreen(this.dataHandler);
 
   @override
   SplashScreenState createState() => SplashScreenState();
@@ -13,10 +15,15 @@ class SplashScreen extends StatefulWidget {
 class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    init();
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, 'homepage');
     });
+  }
+
+  void init() async{
+    await widget.dataHandler.init();
   }
 
   @override

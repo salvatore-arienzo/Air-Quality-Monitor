@@ -56,7 +56,7 @@ class _MenuMakerState extends State<MenuMaker> {
                         color: Color(0xd3717975))),
                     onTap: () => Navigator.pushNamed(context, 'connection'),
                   ),
-                  SizedBox(height: 15,),
+                  /*SizedBox(height: 15,),
                   ListTile(
                     leading: Icon(
                       Icons.web_rounded,
@@ -68,7 +68,7 @@ class _MenuMakerState extends State<MenuMaker> {
                         fontWeight: FontWeight.bold,
                         color: Color(0xd3717975))),
                     onTap: () => Navigator.pushNamed(context, 'log'),
-                  ),
+                  ),*/
                 ]),
               ],
             )));

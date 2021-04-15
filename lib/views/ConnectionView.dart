@@ -9,14 +9,16 @@ import 'package:toast/toast.dart';
 var connected = false;
 
 class ConnectionView extends StatefulWidget {
-  ConnectionView({Key key}) : super(key: key);
+  DataHandler dataHandler;
+  ConnectionView(this.dataHandler);
+  //ConnectionView({this.dataHandler, Key key}) : super(key: key);
+
 
   @override
   _ConnectionViewState createState() => _ConnectionViewState();
 }
 
 class _ConnectionViewState extends State<ConnectionView> {
-  DataHandler dataHandler;
   @override
   Widget build(BuildContext context) {
     var textButton;
@@ -64,7 +66,9 @@ class _ConnectionViewState extends State<ConnectionView> {
 }
 
 class ConnectionListView extends StatefulWidget {
-  ConnectionListView({Key key}) : super(key: key);
+  //ConnectionListView({Key key}) : super(key: key);
+  DataHandler dataHandler;
+  ConnectionListView(this.dataHandler);
 
   final List<BluetoothDevice> devicesList = new List<BluetoothDevice>();
   final FlutterBlue flutterBlue = FlutterBlue.instance;
@@ -75,7 +79,6 @@ class ConnectionListView extends StatefulWidget {
 
 class _ConnectionListViewState extends State<ConnectionListView> {
   List<BluetoothService> _services;
-  DataHandler dataHandler;
 
   _addDeviceTolist(final BluetoothDevice device) {
     if (!widget.devicesList.contains(device)) {
@@ -171,8 +174,14 @@ class _ConnectionListViewState extends State<ConnectionListView> {
                               "0000ffe1-0000-1000-8000-00805f9b34fb")) {
                             c.setNotifyValue(true);
                             c.value.listen((value) async {
-                              String data = new String.fromCharCodes(value);
-                              dataHandler.readValues(value);
+                              String data = await new String.fromCharCodes(value);
+                              print(data);
+                             if (data.isNotEmpty && data != null){
+                               try {
+                                    widget.dataHandler.readValues(data);
+                               } catch(e){
+                               }
+                               }
                             });
                           }
                         }
@@ -182,7 +191,7 @@ class _ConnectionListViewState extends State<ConnectionListView> {
                   setConnectedState();
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ConnectionView()),
+                    MaterialPageRoute(builder: (context) => ConnectionView(widget.dataHandler)),
                   );
                 },
               ),

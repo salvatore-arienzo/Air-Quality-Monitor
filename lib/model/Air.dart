@@ -14,4 +14,5 @@ class Air {
   Air(this.Pm, this.Co, this.Alcohol, this.Co2, this.Toluene, this.Nh4,
       this.Acetone, this.Humidity, this.Temperature, this.Latitude,
       this.Longitude);
+
 }

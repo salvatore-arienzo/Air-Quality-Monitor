@@ -4,7 +4,7 @@ import 'package:air_quality_monitor/model/Air.dart';
 
 abstract class IAirWS {
 
-  Future<Air> sendAirEntry(Air airEntry);
+  Future<void> sendAirEntry(Air airEntry);
 
   Future<Air> getLatestMeasurement();
 
